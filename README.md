@@ -5,4 +5,5 @@ This project is about to deploy Reddit-Clone-App on EKS by using Jenkins and Arg
 
 - Version Control System: Git
 - Git Repo: Github.
+
 we will use Github to store our source code and webhook with Jenkins so whevever there are code changes, Jenkins pipeline will be triggered automatically.
