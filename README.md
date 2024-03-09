@@ -1,4 +1,5 @@
 # Reddit Clone App on Kubernetes
+This project is about to deploy Reddit-Clone-App on EKS by using Jenkins and ArgoCD
 ## Workflow
 
 
