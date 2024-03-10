@@ -64,12 +64,16 @@ eksctl create cluster --name reddit-cluster \
 ```
 wait 10-20 minutes until cluster is created
 
+<img width="888" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/aa0d991b-c38c-4cd6-be9a-8c0b12319c9f">
+
 Verify Cluster with below command
 
 ```sh
 kubectl get nodes
 kubectl get svc
 ```
+
+<img width="785" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/62b1a5a0-1cff-4b8b-b8a8-84fcad45aa33">
 
 
   
