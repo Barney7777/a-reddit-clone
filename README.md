@@ -222,8 +222,10 @@ user name is admin
 password
 
 ```sh
-kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode
 ```
+
+<img width="1098" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/d23da88a-72fd-4ee0-b697-b5e40dcdd13b">
 
 
 
