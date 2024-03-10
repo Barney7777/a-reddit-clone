@@ -137,6 +137,7 @@ than, continue-> others->linux-> you will get commands like following
 
 <img width="1298" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/31e069e8-c9b6-40b0-a916-27b50d6d1586">
 
+
 Step6: Notification
 
 install Email Extention Plugin in jenkins
@@ -164,6 +165,16 @@ Now under the Extended E-mail Notification section configure the details as show
 
 <img width="369" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/ca366925-28b9-41b2-97b8-75595b51f23d">
 
+Step7: Monitor
+
+Install Helm Chart
+
+```sh
+curl -fsSL -o get_helm.sh https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
+chmod 700 get_helm.sh
+./get_helm.sh
+helm version
+```
 
 
 
