@@ -22,11 +22,15 @@ This project is about to deploy Reddit-Clone-App on EKS by using Jenkins and Arg
 
   Image Scan -> Trivy
 
-  Image updater -> shell script. whenever new image with different tag is build, this step will update the image and tag on the Gitops Repository where there are   manifest files for the Kubernetes and this change will trigger the ArgoCD.
+  Image updater -> shell script. whenever new image with different tag is built, this step will update the image and tag on the Gitops Repository where there are   manifest files for the Kubernetes and this change will trigger the ArgoCD.
 
 - For CD job(ArgoCD)
 
-  we will use ArgoCD to performance Gitops mechanism. it will continuously watching for the Gitops repo, whenever new image is created, ArgoCD will automaticaly deploy this new image to Kubernetes Cluster. 
+  We will use ArgoCD to performance Gitops mechanism. it will continuously watching for the Gitops repo, whenever new image is created, ArgoCD will automaticaly deploy this new image to Kubernetes Cluster.
+
+- For Notificaion -> Gmail. Whenever pipeline is finished, this step will send notifications like building results, logs, reports related to Trivy File scan, image scan and Dependencies check via Gmail.
+
+- For Monitoring -> Promethues and Granafa. we will use these tools to monitor Kubernetes Cluster.
 
   
   
