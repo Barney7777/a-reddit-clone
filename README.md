@@ -176,6 +176,26 @@ chmod 700 get_helm.sh
 helm version
 ```
 
+<img width="1083" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/a8de62a5-202f-40be-bc48-56fba26b9645">
+
+Install promethues
+
+```sh
+helm repo add stable https://charts.helm.sh/stable
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+kubectl create namespace prometheus
+helm install stable prometheus-community/kube-prometheus-stack -n prometheus
+kubectl get pods -n prometheus
+kubectl get svc -n prometheus
+```
+
+let’s expose Prometheus to the external world
+
+```sh
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
+kubectl get svc -n prometheus
+```
+
 
 
 
