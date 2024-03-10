@@ -227,6 +227,33 @@ kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.adm
 
 <img width="1098" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/d23da88a-72fd-4ee0-b697-b5e40dcdd13b">
 
+Import dashboard - 15760 - Load - Select Prometheus  & Click Import.
+
+Import dashboard - 12740 - Load - Select Prometheus  & Click Import.
+
+you will get very beautiful dashboard
+
+Step8 ArgoCD
+
+Install ArgoCD
+
+```sh
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl get pods -n argocd
+```
+
+<img width="757" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/e214a994-e52c-4c87-8d59-09b602979ccd">
+
+expose ArgoCD to the external world
+
+```sh
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+```
+
+
+
+
 
 
 
