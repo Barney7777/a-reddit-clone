@@ -53,6 +53,16 @@ terraform apply --auto-approve
 
 <img width="1263" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/ef673017-d0f6-48fd-afb3-692f3986fae0">
 
+Step2: install eks cluster by using eksctl
+
+```sh
+eksctl create cluster --name reddit-cluster \
+--region ap-southeast-2 \
+--node-type t2.small \
+--nodes 3 \
+```
+
+
   
   
 
