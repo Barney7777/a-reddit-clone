@@ -1,43 +1,23 @@
-pipeline {
+pipeline{
     agent any
-    tools {
+    tools{
         jdk 'jdk17'
         nodejs 'node16'
     }
     environment {
-        SCANNER_HOME = tool 'sonar-scanner'
-        APP_NAME = "reddit-clone-pipeline"
+        SCANNER_HOME=tool 'sonar-scanner'
+        APP_NAME = "reddit"
         RELEASE = "1.0.0"
-        DOCKER_USER = "ashfaque9x"
-        DOCKER_PASS = 'dockerhub'
+        DOCKER_USER = "barneywang"
         IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
         IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
-	JENKINS_API_TOKEN = credentials("JENKINS_API_TOKEN")
+        GIT_REPO_NAME = "a-reddit-clone-gitops"
+        GIT_USER_NAME = "Barney7777" 
     }
     stages {
-        stage('clean workspace') {
-            steps {
-                cleanWs()
-            }
-        }
-        stage('Checkout from Git') {
-            steps {
-                git branch: 'main', url: 'https://github.com/Ashfaque-9x/a-reddit-clone.git'
-            }
-        }
-        stage("Sonarqube Analysis") {
-            steps {
-                withSonarQubeEnv('SonarQube-Server') {
-                    sh '''$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=Reddit-Clone-CI \
-                    -Dsonar.projectKey=Reddit-Clone-CI'''
-                }
-            }
-        }
-        stage("Quality Gate") {
-            steps {
-                script {
-                    waitForQualityGate abortPipeline: false, credentialsId: 'SonarQube-Token'
-                }
+        stage('Checkout from Git'){
+            steps{
+                git branch: 'main', url: 'https://github.com/Barney7777/a-reddit-clone.git'
             }
         }
         stage('Install Dependencies') {
@@ -45,57 +25,95 @@ pipeline {
                 sh "npm install"
             }
         }
+        stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=reddit \
+                    -Dsonar.projectKey=reddit '''
+                }
+            }
+        }
+        stage("quality gate"){
+          steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                }
+            }
+        }
+        stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
         stage('TRIVY FS SCAN') {
             steps {
-                sh "trivy fs . > trivyfs.txt"
-             }
-         }
-	 stage("Build & Push Docker Image") {
-             steps {
-                 script {
-                     docker.withRegistry('',DOCKER_PASS) {
-                         docker_image = docker.build "${IMAGE_NAME}"
-                     }
-                     docker.withRegistry('',DOCKER_PASS) {
-                         docker_image.push("${IMAGE_TAG}")
-                         docker_image.push('latest')
-                     }
-                 }
-             }
-         }
-	 stage("Trivy Image Scan") {
-             steps {
-                 script {
-	              sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image ashfaque9x/reddit-clone-pipeline:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table > trivyimage.txt')
-                 }
-             }
-         }
-	 stage ('Cleanup Artifacts') {
-             steps {
-                 script {
-                      sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
-                      sh "docker rmi ${IMAGE_NAME}:latest"
-                 }
-             }
-         }
-	 stage("Trigger CD Pipeline") {
+                sh "trivy fs . > trivyfs.json"
+            }
+        }
+        stage("Docker Build & Push"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                       sh "docker build -t ${APP_NAME} ."
+                       sh "docker tag ${APP_NAME} ${DOCKER_USER}/${APP_NAME}:${IMAGE_TAG} "
+                       sh "docker push ${IMAGE_NAME}:${IMAGE_TAG} "
+                    }
+                }
+            }
+        }
+        stage("TRIVY IMAGE SCAN"){
+            steps{
+                sh "trivy image ${IMAGE_NAME}:${IMAGE_TAG} > trivyimage.json"
+            }
+        }
+        stage ('Cleanup Artifacts') {
             steps {
                 script {
-                    sh "curl -v -k --user clouduser:${JENKINS_API_TOKEN} -X POST -H 'cache-control: no-cache' -H 'content-type: application/x-www-form-urlencoded' --data 'IMAGE_TAG=${IMAGE_TAG}' 'ec2-65-2-187-142.ap-south-1.compute.amazonaws.com:8080/job/Reddit-Clone-CD/buildWithParameters?token=gitops-token'"
+                    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker rmi ${APP_NAME}:latest"                    
+                }
+            }
+        }
+        stage('Checkout Code From Gitops') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Barney7777/a-reddit-clone-gitops.git'
+            }
+        }
+
+        stage("Update the Deployment Tags") {
+            steps {
+                sh """
+                    cat deployment.yaml
+                    sed -i 's|image: .*|image: ${IMAGE_NAME}:${IMAGE_TAG}|' deployment.yaml
+                    cat deployment.yaml
+                """
+            }
+        }
+
+        stage("Push the changed deployment file to GitHub") {
+            steps {
+                sh """
+                    git config --global user.name "Barney7777"
+                    git config --global user.email "wangyaxu7@gmail.com"
+                    git add deployment.yaml
+                    git commit -m "Updated Deployment Manifest"
+                """
+                withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+                    sh "git push https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} main"
                 }
             }
          }
-     }
-     post {
+    }
+    post {
         always {
            emailext attachLog: true,
                subject: "'${currentBuild.result}'",
                body: "Project: ${env.JOB_NAME}<br/>" +
                    "Build Number: ${env.BUILD_NUMBER}<br/>" +
                    "URL: ${env.BUILD_URL}<br/>",
-               to: 'ashfaque.s510@gmail.com',                              
-               attachmentsPattern: 'trivyfs.txt,trivyimage.txt'
+               to: 'wangyaxu7@gmail.com',                              
+               attachmentsPattern: 'trivyfs.json,trivyimage.json,dependency-check-report.xml'
         }
-     }
-    
+    }
 }
