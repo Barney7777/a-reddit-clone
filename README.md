@@ -32,6 +32,10 @@ This project is about to deploy Reddit-Clone-App on EKS by using Jenkins and Arg
 
 - For Monitoring -> Promethues and Granafa. we will use these tools to monitor Kubernetes Cluster.
 
+## Stpes
+- Step1: Run terraform on your local machine
+  
+
   
   
   
