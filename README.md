@@ -119,7 +119,8 @@ put this token on jenkins credentials
 
 go to manage jenkins-> system-> sonarqube server
 
-<img width="1580" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/64340a43-6468-4de9-a624-99ed583db473">
+<img width="1602" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/e325dc0d-b99a-4a95-af28-48dda313599b">
+
 
 
 Step5: Configure Sonarqube
