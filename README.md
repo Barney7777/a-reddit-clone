@@ -178,7 +178,7 @@ helm version
 
 <img width="1083" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/a8de62a5-202f-40be-bc48-56fba26b9645">
 
-Install promethues
+Install promethues(Grafana will be coming along with Prometheus as the stable version)
 
 ```sh
 helm repo add stable https://charts.helm.sh/stable
@@ -205,6 +205,13 @@ kubectl get svc -n prometheus
 copy dns name of LB and browse with 9090
 
 <img width="1749" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/028a42e9-a50e-4a24-9098-552f34de2015">
+
+let’s change the SVC file of the Grafana and expose it to the outer world
+
+```sh
+kubectl edit svc stable-grafana -n prometheus // change it from Cluster IP to LoadBalancer
+kubectl get svc -n prometheus
+```
 
 
 
