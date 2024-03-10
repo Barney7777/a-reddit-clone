@@ -311,16 +311,26 @@ click reddit-clone-service, open the hostname with 3000 on google
 
 <img width="1380" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/525250c4-5c5e-467a-a401-77d153400f80">
 
+Step10: Webhook
+
+On jenkins
+
+<img width="368" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/971d059b-dec5-4d25-9ba3-24ccf100b61b">
+
+<img width="1301" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/ba134a5c-3b85-4664-a8a3-85fe53634d91">
+
+on Github
+a-reddit-clone repo-> setting-> webhooks-> add webhook
+
+![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/3239eb49-e9ef-4204-8942-98ceb565dd41)
+
+![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/579d72d3-653b-4fc0-8b1c-f1c7eb539810)
 
 
 
 
 
-
-
-
-
-Step10: Create Jenkins Pipeline
+Step11: Create Jenkins Pipeline
 ```sh
 pipeline{
     agent any
@@ -470,8 +480,9 @@ Notification
 
 Monitoing
 
+<img width="1915" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/10604243-0ddc-4fda-a6c7-9991a9cef3be">
 
-
+<img width="1918" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/a36684b4-290b-4537-940d-455084e5d942">
 
 
 
