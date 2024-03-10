@@ -293,6 +293,32 @@ Connect to repo
 
 ![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/d5898ad0-bc7e-4fef-a6b0-8d593b9e71ec)
 
+application-> new app
+
+![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/f3863226-59c9-4f82-85e0-dd794bde2042)
+
+![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/be1cde40-d799-4d27-8834-bafb04eb098e)
+
+![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/a746f65b-bfb5-4460-a822-ac0d0419b479)
+
+Verify
+
+<img width="1491" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/f02b788d-16ad-4122-b471-584f75cf6521">
+
+click reddit-clone-service, open the hostname with 3000 on google
+
+<img width="1919" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/1047f623-70f7-49fc-b353-6aae08912a3c">
+
+<img width="1380" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/525250c4-5c5e-467a-a401-77d153400f80">
+
+
+
+
+
+
+
+
+
 
 Step10: Create Jenkins Pipeline
 ```sh
