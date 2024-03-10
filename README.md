@@ -213,6 +213,20 @@ kubectl edit svc stable-grafana -n prometheus // change it from Cluster IP to Lo
 kubectl get svc -n prometheus
 ```
 
+<img width="320" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/61c0f907-e9ff-4eee-805e-0447d06e499c">
+
+<img width="1489" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/610dacdb-27dc-4daa-82b0-72076589a781">
+
+user name is admin
+
+password
+
+```sh
+kubectl get secret --namespace prometheus stable-grafana -o jsonpath="{.data.admin-password}" | base64 --decode ; echo
+```
+
+
+
 
 
 
