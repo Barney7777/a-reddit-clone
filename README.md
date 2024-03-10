@@ -48,6 +48,8 @@ terraform validate
 terraform apply --auto-approve
 ```
 
+
+<img width="869" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/f1418f0b-38ee-4028-ad0d-c5ecf35599b3">
   
   
   
