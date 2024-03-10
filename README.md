@@ -54,7 +54,7 @@ terraform apply --auto-approve
 <img width="1263" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/ef673017-d0f6-48fd-afb3-692f3986fae0">
 
 
-Step2: install eks cluster by using eksctl
+Step2: install eks cluster by using eksctl on jenkins server
 
 ```sh
 eksctl create cluster --name reddit-cluster \
@@ -74,6 +74,17 @@ kubectl get svc
 ```
 
 <img width="785" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/62b1a5a0-1cff-4b8b-b8a8-84fcad45aa33">
+
+Step3: On Jenkins UI, install the following plugin
+
+go to jenkins-> plugins-> available plugins
+
+Blue Ocean, Eclipse Temurin Installer, SonarQube Scanner,  NodeJs Plugin, Docker, Docker commons, Docker pipeline, Docker API, Owasp Dependency Check
+
+<img width="1917" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/e0c7edf7-db6d-44ad-9dfe-9f2d484a0f3c">
+
+
+
 
 
   
