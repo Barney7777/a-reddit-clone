@@ -251,6 +251,14 @@ expose ArgoCD to the external world
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
+get ArgoCD dns
+
+```sh
+export ARGOCD_SERVER=`kubectl get svc argocd-server -n argocd -o json | jq --raw-output '.status.loadBalancer.ingress[0].hostname'`
+echo $ARGOCD_SERVER
+```
+
+
 
 
 
