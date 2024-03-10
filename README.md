@@ -322,7 +322,156 @@ click reddit-clone-service, open the hostname with 3000 on google
 
 Step10: Create Jenkins Pipeline
 ```sh
+pipeline{
+    agent any
+    tools{
+        jdk 'jdk17'
+        nodejs 'node16'
+    }
+    environment {
+        SCANNER_HOME=tool 'sonar-scanner'
+        APP_NAME = "reddit"
+        RELEASE = "1.0.0"
+        DOCKER_USER = "barneywang"
+        IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
+        IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"
+        GIT_REPO_NAME = "a-reddit-clone-gitops"
+        GIT_USER_NAME = "Barney7777" 
+    }
+    stages {
+        stage('Checkout from Git'){
+            steps{
+                git branch: 'main', url: 'https://github.com/Barney7777/a-reddit-clone.git'
+            }
+        }
+        stage('Install Dependencies') {
+            steps {
+                sh "npm install"
+            }
+        }
+        stage("Sonarqube Analysis "){
+            steps{
+                withSonarQubeEnv('sonar-server') {
+                    sh ''' $SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=reddit \
+                    -Dsonar.projectKey=reddit '''
+                }
+            }
+        }
+        stage("quality gate"){
+          steps {
+                script {
+                    waitForQualityGate abortPipeline: false, credentialsId: 'Sonar-token'
+                }
+            }
+        }
+        stage('OWASP FS SCAN') {
+            steps {
+                dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+                dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+            }
+        }
+        stage('TRIVY FS SCAN') {
+            steps {
+                sh "trivy fs . > trivyfs.json"
+            }
+        }
+        stage("Docker Build & Push"){
+            steps{
+                script{
+                   withDockerRegistry(credentialsId: 'docker', toolName: 'docker'){
+                       sh "docker build -t ${APP_NAME} ."
+                       sh "docker tag ${APP_NAME} ${DOCKER_USER}/${APP_NAME}:${IMAGE_TAG} "
+                       sh "docker push ${IMAGE_NAME}:${IMAGE_TAG} "
+                    }
+                }
+            }
+        }
+        stage("TRIVY IMAGE SCAN"){
+            steps{
+                sh "trivy image ${IMAGE_NAME}:${IMAGE_TAG} > trivyimage.json"
+            }
+        }
+        stage ('Cleanup Artifacts') {
+            steps {
+                script {
+                    sh "docker rmi ${IMAGE_NAME}:${IMAGE_TAG}"
+                    sh "docker rmi ${APP_NAME}:latest"                    
+                }
+            }
+        }
+        stage('Checkout Code From Gitops') {
+            steps {
+                git branch: 'main', url: 'https://github.com/Barney7777/a-reddit-clone-gitops.git'
+            }
+        }
+
+        stage("Update the Deployment Tags") {
+            steps {
+                sh """
+                    cat deployment.yaml
+                    sed -i 's|image: .*|image: ${IMAGE_NAME}:${IMAGE_TAG}|' deployment.yaml
+                    cat deployment.yaml
+                """
+            }
+        }
+
+        stage("Push the changed deployment file to GitHub") {
+            steps {
+                sh """
+                    git config --global user.name "Barney7777"
+                    git config --global user.email "wangyaxu7@gmail.com"
+                    git add deployment.yaml
+                    git commit -m "Updated Deployment Manifest"
+                """
+                withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+                    sh "git push https://github.com/${GIT_USER_NAME}/${GIT_REPO_NAME} main"
+                }
+            }
+         }
+    }
+    post {
+        always {
+           emailext attachLog: true,
+               subject: "'${currentBuild.result}'",
+               body: "Project: ${env.JOB_NAME}<br/>" +
+                   "Build Number: ${env.BUILD_NUMBER}<br/>" +
+                   "URL: ${env.BUILD_URL}<br/>",
+               to: 'wangyaxu7@gmail.com',                              
+               attachmentsPattern: 'trivyfs.json,trivyimage.json,dependency-check-report.xml'
+        }
+    }
+}
 ```
+
+Pipeline results
+
+<img width="1881" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/13326885-b786-49be-a8a1-d5923a24a7d1">
+
+Sonarque analysis
+
+<img width="994" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/627e8dbc-ec39-4435-8f70-74dd8c71165c">
+
+Dependencies check result
+
+<img width="1547" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/b4b6582e-a427-4529-bbb8-1f1111f3dfb2">
+
+on Gitops repo, image tag has been changed from 1.0.0-8 to 1.0.0-3
+
+![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/18e0babb-c5e3-4a14-8260-a75b8c6c7e88)
+
+in Argocd, new image is deployed automatically
+
+<img width="941" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/9cc8f4c0-123f-41e3-b019-cba81e372d10">
+
+
+Notification
+
+<img width="868" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/1e494219-5b59-4dfe-879f-e0d4db8cf7f0">
+
+Monitoing
+
+
+
 
 
 
