@@ -96,6 +96,9 @@ go to manage jenkins-> Tools
 
 <img width="316" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/ecc0d05d-f892-45f0-b90f-04d96fb0dc9b">
 
+<img width="1631" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/9d6e2732-c052-4536-bb9f-7dc1f40b7a96">
+
+
 go to manage jenkins-> credentials
 
 provide your dockerhub name and password/token
@@ -251,13 +254,40 @@ expose ArgoCD to the external world
 kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
 ```
 
-get ArgoCD dns
+get ArgoCD dns and open it on google
 
 ```sh
 export ARGOCD_SERVER=`kubectl get svc argocd-server -n argocd -o json | jq --raw-output '.status.loadBalancer.ingress[0].hostname'`
 echo $ARGOCD_SERVER
 ```
 
+<img width="1255" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/a093de1c-33e3-414c-91aa-3d99d2aeb701">
+
+or you can use 
+```sh
+kubectl get svc -n argocd
+```
+
+<img width="1511" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/5a3faf8d-4529-47fc-b58c-9b2fe0be01e2">
+
+username: admin
+
+password:
+
+```sh
+export ARGO_PWD=`kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d`
+echo $ARGO_PWD
+```
+
+or you can use
+
+```sh
+kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
+echo <password> | base64 --decode
+```
+
+Step9: Create Jenkins Pipeline
+```sh
 
 
 
