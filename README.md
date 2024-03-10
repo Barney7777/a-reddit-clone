@@ -62,6 +62,14 @@ eksctl create cluster --name reddit-cluster \
 --node-type t2.small \
 --nodes 3 \
 ```
+wait 10-20 minutes until cluster is created
+
+Verify Cluster with below command
+
+```sh
+kubectl get nodes
+kubectl get svc
+```
 
 
   
