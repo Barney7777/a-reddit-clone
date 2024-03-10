@@ -115,7 +115,7 @@ go to github-> settings-> developer settings-> personal access tokens-> Token(cl
 
 put this token on jenkins credentials
 
-<img width="751" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/7d103d4e-d1fe-43cd-add6-8251a03cab2d">
+<img width="1773" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/ba0e557d-8a25-4629-a1aa-5280e29bfd4e">
 
 go to manage jenkins-> system-> sonarqube server
 
