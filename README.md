@@ -484,6 +484,9 @@ Monitoing
 
 <img width="1918" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/a36684b4-290b-4537-940d-455084e5d942">
 
+<img width="1916" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/a2887961-439a-4479-9eac-9a8ff7c9309a">
+
+
 
 
 
