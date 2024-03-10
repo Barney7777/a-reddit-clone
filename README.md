@@ -128,9 +128,13 @@ go to Sonarqube dashboard-> project-> manually
 
 <img width="457" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/a9fb26ee-8cb2-4263-be8d-e62056c87276">
 
-after that, choose manually-> using existing token
+after that, choose manually-> using existing token, put your token which is generated before
 
 <img width="690" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/0d150cf8-d42b-412b-9509-f2abbaf06928">
+
+than, continue-> others->linux-> you will get commands like following
+
+<img width="1298" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/31e069e8-c9b6-40b0-a916-27b50d6d1586">
 
 
 
