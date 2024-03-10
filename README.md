@@ -287,9 +287,17 @@ or you can use
 kubectl get secret argocd-initial-admin-secret -n argocd -o yaml
 echo <password> | base64 --decode
 ```
+Step9: Configure Argocd to Deploy Pods on eks Cluster
 
-Step9: Create Jenkins Pipeline
+Connect to repo
+
+![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/d5898ad0-bc7e-4fef-a6b0-8d593b9e71ec)
+
+
+Step10: Create Jenkins Pipeline
 ```sh
+```
+
 
 
 
