@@ -22,8 +22,7 @@ This project is about to deploy Reddit-Clone-App on EKS by using Jenkins and Arg
 
   Image Scan -> Trivy
 
-  Image updater -> shell script. whenever new image with different tag is build, this step will update the image and tag on the Gitops Repository where there are   
-  manifest files for the Kubernetes and this change will trigger the ArgoCD.
+  Image updater -> shell script. whenever new image with different tag is build, this step will update the image and tag on the Gitops Repository where there are   manifest files for the Kubernetes and this change will trigger the ArgoCD.
 
 - For CD job(ArgoCD)
 
