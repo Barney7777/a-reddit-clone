@@ -86,11 +86,16 @@ Blue Ocean, Eclipse Temurin Installer, SonarQube Scanner,  NodeJs Plugin, Docker
 Step4: Configuration on tool jenkins tool and system
 
 go to manage jenkins-> Tools
-Install jdk17 and nodejs16
 
 <img width="1647" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/88efebb9-29e3-49bf-b67e-cda76f89bf54">
 
 <img width="416" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/5df69989-bc79-43c3-bec2-a99ab7b863f8">
+
+<img width="516" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/2ec0df3d-e815-4234-9851-3452391b450b">
+
+<img width="316" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/ecc0d05d-f892-45f0-b90f-04d96fb0dc9b">
+
+
 
 
 
