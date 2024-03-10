@@ -127,7 +127,8 @@ Step5: Configure Sonarqube
 
 go to Sonarqube dashboard-> administration-> configuration-> Webhook-> create
 
-<img width="889" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/b5812205-1bd3-42ef-8019-facd29d5a16c">
+<img width="451" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/b60b2d01-1dbf-48c1-8983-208d19b3288b">
+
 
 go to Sonarqube dashboard-> project-> manually
 
