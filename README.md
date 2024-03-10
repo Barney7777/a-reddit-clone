@@ -469,6 +469,11 @@ on Gitops repo, image tag has been changed from 1.0.0-8 to 1.0.0-3
 
 ![image](https://github.com/Barney7777/a-reddit-clone/assets/122773145/18e0babb-c5e3-4a14-8260-a75b8c6c7e88)
 
+Dockerhub repo
+
+<img width="739" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/6c5935f5-5dd2-450e-9056-7cd6292a7900">
+
+
 in Argocd, new image is deployed automatically
 
 <img width="941" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/9cc8f4c0-123f-41e3-b019-cba81e372d10">
