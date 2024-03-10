@@ -118,6 +118,7 @@ go to manage jenkins-> system-> sonarqube server
 
 <img width="1580" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/64340a43-6468-4de9-a624-99ed583db473">
 
+
 Step5: Configure Sonarqube
 
 go to Sonarqube dashboard-> administration-> configuration-> Webhook-> create
@@ -135,6 +136,34 @@ after that, choose manually-> using existing token, put your token which is gene
 than, continue-> others->linux-> you will get commands like following
 
 <img width="1298" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/31e069e8-c9b6-40b0-a916-27b50d6d1586">
+
+Step6: Notification
+
+install Email Extention Plugin in jenkins
+
+Go to your Gmail and click on your profile
+
+Then click on Manage Your Google Account --> click on the security tab on the left side panel you will get password(make sure your 2-step verification is enabled)
+
+Click on Manage Jenkins--> credentials and add your mail username and generated password
+
+<img width="776" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/92a861d9-5d63-406d-9a60-b7754b67c37b">
+
+
+click on manage Jenkins --> configure system there under the E-mail Notification section configure the details as shown in the below image
+
+<img width="1603" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/bceae6a8-953a-4f9a-90cb-bedc7e9f1ac0">
+
+<img width="1621" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/15152e3f-21e0-404d-b027-a61e9e5353b2">
+
+Now under the Extended E-mail Notification section configure the details as shown in the below images
+
+<img width="476" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/02709f9e-4c9a-4bd7-a30e-e7318229df98">
+
+<img width="204" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/cae03574-d0b9-4c75-a0bb-c56baa87cdfb">
+
+<img width="369" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/ca366925-28b9-41b2-97b8-75595b51f23d">
+
 
 
 
