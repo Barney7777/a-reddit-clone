@@ -9,4 +9,5 @@ This project is about to deploy Reddit-Clone-App on EKS by using Jenkins and Arg
 - For CI part
 
   Code Quality Check -> SonarQube
+  
   Dependencies installation -> NPM
