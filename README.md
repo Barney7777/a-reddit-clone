@@ -188,13 +188,26 @@ helm install stable prometheus-community/kube-prometheus-stack -n prometheus
 kubectl get pods -n prometheus
 kubectl get svc -n prometheus
 ```
+<img width="936" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/6dc7b594-402d-4666-a958-4e0c2fc1aa8a">
+
 
 let’s expose Prometheus to the external world
 
 ```sh
-kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus
+kubectl edit svc stable-kube-prometheus-sta-prometheus -n prometheus //change it from Cluster IP to LoadBalancer.change port & targetport to 9090, save and close
 kubectl get svc -n prometheus
 ```
+
+<img width="582" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/8bd19d9c-8c57-4614-92f0-f3752ff26318">
+
+<img width="1505" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/e598c675-9c95-4a81-a4bc-e6d6444d0236">
+
+copy dns name of LB and browse with 9090
+
+<img width="1749" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/028a42e9-a50e-4a24-9098-552f34de2015">
+
+
+
 
 
 
