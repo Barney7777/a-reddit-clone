@@ -83,6 +83,7 @@ Blue Ocean, Eclipse Temurin Installer, SonarQube Scanner,  NodeJs Plugin, Docker
 
 <img width="1917" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/e0c7edf7-db6d-44ad-9dfe-9f2d484a0f3c">
 
+
 Step4: Configuration on tool jenkins tool and system, create credentials for sonarqube, docker and github token
 
 go to manage jenkins-> Tools
@@ -100,6 +101,22 @@ go to manage jenkins-> credentials
 provide your dockerhub name and password/token
 
 <img width="717" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/e0722fb5-a96d-481c-aa7b-9e5d1c2807b6">
+
+go to sonarqube dashboard, administration->security->users->generate token
+
+put this token on jenkins credentials
+
+<img width="781" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/6816eeca-0812-46f5-917f-7ea441a1d9c9">
+
+go to github-> settings-> developer settings-> personal access tokens-> Token(classic)->generate token
+
+put this token on jenkins credentials
+
+<img width="751" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/7d103d4e-d1fe-43cd-add6-8251a03cab2d">
+
+go to manage jenkins-> system-> sonarqube server
+
+<img width="1580" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/64340a43-6468-4de9-a624-99ed583db473">
 
 
 
