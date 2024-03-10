@@ -35,7 +35,18 @@ This project is about to deploy Reddit-Clone-App on EKS by using Jenkins and Arg
 ## Stpes
 
 Step1: Run terraform on your local machine
-  
+- we will store state file in S3 bucket and lock it in dynamodb table
+- create iam role with policy of AdministratorAccess and attach to ec2 instance
+- create security group to open necessary ports
+- create ec2 instance with t2.large and 30 ebs volume
+- we will use user-data to install jenkins, docker, trivy, kubectl, awscli and eksctl while ec2 is creating
+
+```sh
+terraform init
+terraform fmt
+terraform validate
+terraform apply --auto-approve
+```
 
   
   
