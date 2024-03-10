@@ -118,6 +118,21 @@ go to manage jenkins-> system-> sonarqube server
 
 <img width="1580" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/64340a43-6468-4de9-a624-99ed583db473">
 
+Step5: Configure Sonarqube
+
+go to Sonarqube dashboard-> administration-> configuration-> Webhook-> create
+
+<img width="889" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/b5812205-1bd3-42ef-8019-facd29d5a16c">
+
+go to Sonarqube dashboard-> project-> manually
+
+<img width="457" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/a9fb26ee-8cb2-4263-be8d-e62056c87276">
+
+after that, choose manually-> using existing token
+
+<img width="690" alt="image" src="https://github.com/Barney7777/a-reddit-clone/assets/122773145/0d150cf8-d42b-412b-9509-f2abbaf06928">
+
+
 
 
 
